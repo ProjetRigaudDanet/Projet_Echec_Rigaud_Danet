@@ -1,9 +1,11 @@
 package Partie;
 
+import Echiquier.Echiquier;
 import Echiquier.Pieces;
 
 public class Partie 
 {
+	private Echiquier echiquier;
 	
 	public Partie()
 	{

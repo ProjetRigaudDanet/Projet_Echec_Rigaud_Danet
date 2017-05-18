@@ -10,16 +10,21 @@ import Pièces.Tour;
 
 public class Echiquier 
 {
-	private Pieces[][] echiquier;
+	private Case[][] echiquier;
 	private Partie partie;
-	
-	
-	//etienne// 
 	
 	public Echiquier()
 	{
-		echiquier = new Pieces[8][8];
+		echiquier = new Case[8][8];
+		for(int i=0;i<echiquier.length;i++)
+		{
+			for(int j=0; j<8; j++)
+			{
+				echiquier[i][j] = new Case();
+			}
+		}
 	}
+	
 	
 	public Echiquier(Partie partie)
 	{
@@ -71,5 +76,14 @@ public class Echiquier
 		if(partie.boolplacerPiece(x,y)) return echiquier[x][y];	
 		return null;
 	}
+	
+    public boolean estVide(int x, int y){
+        if(echiquier[x][y] == null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }	
 	
 }

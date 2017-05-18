@@ -1,0 +1,9 @@
+package Partie;
+
+public class Partie 
+{
+	public String ErreurPlacerPieces()
+	{
+		
+	}
+}

@@ -1,0 +1,67 @@
+package Echiquier;
+
+import Partie.Partie;
+import Pièces.Cavalier;
+import Pièces.Dame;
+import Pièces.Fou;
+import Pièces.Pion;
+import Pièces.Roi;
+import Pièces.Tour;
+
+public class Echiquier 
+{
+	private Pieces[][] echiquier;
+	private Partie partie;
+	
+	public Echiquier()
+	{
+		echiquier = new Pieces[8][8];
+	}
+	
+	public Echiquier(Partie partie)
+	{
+		this.partie=partie;
+	}
+	
+	public void initialise()
+	{
+		for(int i=0;i<echiquier.length;i++)
+		{
+			for(int j=0;j<echiquier[i].length;j++)
+			{
+				echiquier[i][j]=null;
+			}
+		}
+		
+		placerPiece(0,0, new Tour(0,0,"Blanc",this));
+		placerPiece(1,0, new Cavalier(1,0,"Blanc",this));
+		placerPiece(2,0, new Fou(2,0,"Blanc",this));
+		placerPiece(3,0, new Dame(3,0,"Blanc",this));
+		placerPiece(4,0, new Roi(4,0,"Blanc",this));
+		placerPiece(5,0, new Fou(5,0,"Blanc",this));
+		placerPiece(6,0, new Cavalier(6,0,"Blanc",this));
+		placerPiece(7,0, new Tour(7,0,"Blanc",this));
+		
+		for(char i=0;i<7;i++)
+		{
+			placerPieces(i,1, new Pion(i,1,"Blanc",this));
+			placerPieces(i,6, new Pion(i,6,"Noir",this));
+		}
+		
+		placerPiece(0,7, new Tour(0,7,"Noir",this));
+		placerPiece(1,7, new Cavalier(1,7,"Noir",this));
+		placerPiece(2,7, new Fou(2,7,"Noir",this));
+		placerPiece(3,7, new Dame(3,7,"Noir",this));
+		placerPiece(4,7, new Roi(4,7,"Noir",this));
+		placerPiece(5,7, new Fou(5,7,"Noir",this));
+		placerPiece(6,7, new Cavalier(6,7,"Noir",this));
+		placerPiece(7,7, new Tour(7,7,"Noir",this));
+	}
+	
+	public void placerPiece(int x,int y, Pieces pieces)
+	{
+		if(partie.boolplacerPiece(x,y)) this.echiquier[x][y]=pieces;
+		
+	}
+	
+}

@@ -1,0 +1,13 @@
+package Echiquier;
+
+import Pièces.Pieces;
+
+public class Echiquier 
+{
+	private Case[][] echiquier;
+	
+	public Echiquier()
+	{
+		echiquier = new Pieces[8][8];
+	}
+}

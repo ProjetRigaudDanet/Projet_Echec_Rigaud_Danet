@@ -1,0 +1,6 @@
+package Pièces;
+
+public class Pion 
+{
+	
+}

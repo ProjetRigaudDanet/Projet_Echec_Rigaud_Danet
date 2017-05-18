@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="Pièces.Pieces"/>
+<fullyQualifiedTypeName name="Partie.Partie"/>
+<fullyQualifiedTypeName name="Pièces.Tour"/>
+<fullyQualifiedTypeName name="Pièces.Cavalier"/>
+<fullyQualifiedTypeName name="Pièces.Fou"/>
+<fullyQualifiedTypeName name="Pièces.Dame"/>
+<fullyQualifiedTypeName name="Pièces.Roi"/>
+<fullyQualifiedTypeName name="Pièces.Pion"/>
+</qualifiedTypeNameHistroy>

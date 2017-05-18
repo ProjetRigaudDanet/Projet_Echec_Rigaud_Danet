@@ -1,0 +1,11 @@
+package Echiquier;
+
+public class Case 
+{
+	public Case()
+	{
+		
+	}
+	
+	
+}

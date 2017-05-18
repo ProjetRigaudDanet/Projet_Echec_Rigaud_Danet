@@ -1,0 +1,20 @@
+package Echiquier;
+
+import Partie.Partie;
+import Pièces.Pieces;
+
+public class Echiquier 
+{
+	private Pieces[][] echiquier;
+	private Partie partie;
+	
+	public Echiquier()
+	{
+		echiquier = new Pieces[8][8];
+	}
+	
+	public Echiquier(Partie partie)
+	{
+		this.partie=partie;
+	}
+}

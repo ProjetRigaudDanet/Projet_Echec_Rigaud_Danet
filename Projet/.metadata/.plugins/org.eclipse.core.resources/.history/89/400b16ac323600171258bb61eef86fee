@@ -1,0 +1,9 @@
+package Partie;
+
+public class Partie 
+{
+	public String ErreurPlacerPieces()
+	{
+		System.out.println("Erreur dans la coordonnée sur l'axe des abscisses : \n" + "Ligne : " + x + '\n' + "Colonne : " + y + '\n');
+	}
+}

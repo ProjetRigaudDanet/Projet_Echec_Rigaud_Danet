@@ -1,0 +1,45 @@
+package Echiquier;
+
+import Partie.Partie;
+
+public class Echiquier 
+{
+	private Pieces[][] echiquier;
+	private Partie partie;
+	
+	public Echiquier()
+	{
+		echiquier = new Pieces[8][8];
+	}
+	
+	public Echiquier(Partie partie)
+	{
+		this.partie=partie;
+	}
+	
+	public void initialise()
+	{
+		for(int i=0;i<echiquier.length;i++)
+		{
+			for(int j=0;j<echiquier[i].length;j++)
+			{
+				echiquier[i][j]=null;
+			}
+		}
+		
+		placerPiece(0,0, new Tour(0,0,"Blanc"));
+	}
+	
+	public void placerPiece(int x,int y, Pieces pieces)
+	{
+		if(x<0 || x>7)
+		{
+			System.out.println("Erreur dans la coordonnée sur l'axe des abscisses : \n" + "Ligne : " + x + '\n' + "Colonne : " + y + '\n');
+		}
+		if(y<0 || y>7)
+		{
+			System.out.println("Erreur dans la coordonnée sur l'axe des ordonnée : \n" + "Ligne : " + x + '\n' + "Colonne : " + y + '\n');
+		}
+		this.echiquier[x][y]=pieces;
+	}
+}

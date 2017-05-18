@@ -1,0 +1,6 @@
+package Echiquier;
+
+public class Echiquier 
+{
+	private Case[][] echiquier;
+}

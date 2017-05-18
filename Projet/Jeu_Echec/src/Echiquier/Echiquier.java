@@ -13,6 +13,9 @@ public class Echiquier
 	private Pieces[][] echiquier;
 	private Partie partie;
 	
+	
+	//etienne// 
+	
 	public Echiquier()
 	{
 		echiquier = new Pieces[8][8];

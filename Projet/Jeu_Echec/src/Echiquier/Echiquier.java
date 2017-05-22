@@ -25,6 +25,11 @@ public class Echiquier
 		}
 	}
 	
+	public Case[][] getEchiquier()
+	{
+		return this.echiquier;
+	}
+	
 	
 	public Echiquier(Partie partie)
 	{
@@ -41,49 +46,40 @@ public class Echiquier
 			}
 		}
 		
-		placerPiece(0,0, new Tour(0,0,"Blanc",this));
-		placerPiece(1,0, new Cavalier(1,0,"Blanc",this));
-		placerPiece(2,0, new Fou(2,0,"Blanc",this));
-		placerPiece(3,0, new Dame(3,0,"Blanc",this));
-		placerPiece(4,0, new Roi(4,0,"Blanc",this));
-		placerPiece(5,0, new Fou(5,0,"Blanc",this));
-		placerPiece(6,0, new Cavalier(6,0,"Blanc",this));
-		placerPiece(7,0, new Tour(7,0,"Blanc",this));
+		echiquier[7][0].setPieces(new Tour("Blanc"));
+		echiquier[7][1].setPieces(new Cavalier("Blanc"));
+		echiquier[7][2].setPieces(new Fou("Blanc"));
+		echiquier[7][3].setPieces(new Roi("Blanc"));
+		echiquier[7][4].setPieces(new Dame("Blanc"));
+		echiquier[7][5].setPieces(new Fou("Blanc"));
+		echiquier[7][6].setPieces(new Cavalier("Blanc"));
+		echiquier[7][7].setPieces(new Tour("Blanc"));
+		
+		echiquier[0][0].setPieces(new Tour("Noir"));
+		echiquier[0][1].setPieces(new Cavalier("Noir"));
+		echiquier[0][2].setPieces(new Fou("Noir"));
+		echiquier[0][3].setPieces(new Roi("Noir"));
+		echiquier[0][4].setPieces(new Dame("Noir"));
+		echiquier[0][5].setPieces(new Fou("Noir"));
+		echiquier[0][6].setPieces(new Cavalier("Noir"));
+		echiquier[0][7].setPieces(new Tour("Noir"));
 		
 		for(char i=0;i<7;i++)
 		{
-			placerPieces(i,1, new Pion(i,1,"Blanc",this));
-			placerPieces(i,6, new Pion(i,6,"Noir",this));
+			echiquier[1][i].setPieces(new Pion("Noir"));
+			echiquier[6][i].setPieces(new Pion("Blanc"));
 		}
-		
-		placerPiece(0,7, new Tour(0,7,"Noir",this));
-		placerPiece(1,7, new Cavalier(1,7,"Noir",this));
-		placerPiece(2,7, new Fou(2,7,"Noir",this));
-		placerPiece(3,7, new Dame(3,7,"Noir",this));
-		placerPiece(4,7, new Roi(4,7,"Noir",this));
-		placerPiece(5,7, new Fou(5,7,"Noir",this));
-		placerPiece(6,7, new Cavalier(6,7,"Noir",this));
-		placerPiece(7,7, new Tour(7,7,"Noir",this));
 	}
 	
-	public void placerPiece(int x,int y, Pieces pieces)
+	public void setPieces(int x,int y, Pieces pieces)
 	{
-		if(partie.boolplacerPiece(x,y)) this.echiquier[x][y]=pieces;	
+		if(partie.boolplacerPiece(x,y)) this.echiquier[x][y].setPieces(pieces);
 	}
 	
-	public Pieces getplacerPiece(int x,int y)
+	public Case getplacerPiece(int x,int y)
 	{
 		if(partie.boolplacerPiece(x,y)) return echiquier[x][y];	
 		return null;
 	}
-	
-    public boolean estVide(int x, int y){
-        if(echiquier[x][y] == null){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }	
 	
 }

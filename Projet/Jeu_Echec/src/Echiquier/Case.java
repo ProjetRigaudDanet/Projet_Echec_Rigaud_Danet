@@ -26,14 +26,10 @@ public class Case
 	
 	public boolean estVide()
 	{
-		if(this.pieces==null)
-		{
-			return false;
-		}
-		return true;
+		return (this.pieces==null);
 	}
 	
-	public boolean occupé(String couleur)
+	public boolean estVide(String couleur)
 	{
 		if (this.pieces == null) return false;
 		return(this.pieces.getCouleur() == couleur);
@@ -41,7 +37,7 @@ public class Case
 	
 	public String toString()
 	{
-		if (estVide()) return "0";
+		if (estVide()) return "_";
 		return this.getPieces().toString();
 	}
 }

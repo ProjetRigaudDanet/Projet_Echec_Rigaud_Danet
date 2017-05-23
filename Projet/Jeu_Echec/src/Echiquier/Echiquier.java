@@ -38,12 +38,11 @@ public class Echiquier
 	
 	public void initialise()
 	{
-		for(int i=0;i<echiquier.length;i++)
-		{
-			for(int j=0;j<echiquier[i].length;j++)
-			{
-				echiquier[i][j]=null;
-			}
+		
+		for(int i = 0 ; i < 8;i++)
+		{	
+			echiquier[1][i].setPieces(new Pion("Noir"));
+			echiquier[6][i].setPieces(new Pion("Blanc"));
 		}
 		
 		echiquier[7][0].setPieces(new Tour("Blanc"));
@@ -59,27 +58,22 @@ public class Echiquier
 		echiquier[0][1].setPieces(new Cavalier("Noir"));
 		echiquier[0][2].setPieces(new Fou("Noir"));
 		echiquier[0][3].setPieces(new Roi("Noir"));
-		echiquier[0][4].setPieces(new Dame("Noir"));
+		echiquier[0][4].setPieces(new Dame("v"));
 		echiquier[0][5].setPieces(new Fou("Noir"));
 		echiquier[0][6].setPieces(new Cavalier("Noir"));
 		echiquier[0][7].setPieces(new Tour("Noir"));
 		
-		for(char i=0;i<7;i++)
-		{
-			echiquier[1][i].setPieces(new Pion("Noir"));
-			echiquier[6][i].setPieces(new Pion("Blanc"));
-		}
 	}
 	
-	public void setPieces(int x,int y, Pieces pieces)
-	{
-		if(partie.boolplacerPiece(x,y)) this.echiquier[x][y].setPieces(pieces);
-	}
 	
-	public Case getplacerPiece(int x,int y)
+	public Pieces getPieces(Positionnement positionnement)
 	{
-		if(partie.boolplacerPiece(x,y)) return echiquier[x][y];	
-		return null;
+		return this.echiquier[positionnement.getLigne()][positionnement.getColonne()].getPieces();
+	}
+		
+	public void setPieces(Pieces piece,Positionnement positionnement)
+	{
+		this.echiquier[positionnement.getLigne()][positionnement.getColonne()].setPieces(piece);
 	}
 	
 }

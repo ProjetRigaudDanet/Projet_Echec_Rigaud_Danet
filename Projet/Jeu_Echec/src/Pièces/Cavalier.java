@@ -12,7 +12,7 @@ public class Cavalier extends Pieces
 	
 	public String toString()
 	{
-		if (this.couleur=="Blanc") return "\u265E";
-		else return "\u2658";
+		if (this.couleur=="Blanc") return "\u2658";
+		else return "\u265E";
 	}
 }

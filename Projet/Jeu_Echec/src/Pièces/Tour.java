@@ -12,7 +12,7 @@ public class Tour extends Pieces
 	
 	public String toString()
 	{
-		if (this.couleur=="Blanc") return "\u265C";
-		else return "\u2656";
+		if (this.couleur=="Blanc") return "\u2656";
+		else return "\u265C";
 	}
 }

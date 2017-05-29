@@ -26,18 +26,19 @@ public class Case
 	
 	public boolean estVide()
 	{
-		return (this.pieces==null);
+		return (this.pieces != null);
 	}
 	
 	public boolean estVide(String couleur)
 	{
+		
 		if (this.pieces == null) return false;
 		return(this.pieces.getCouleur() == couleur);
 	}
 	
 	public String toString()
 	{
-		if (estVide()) return "_";
+		if (this.pieces==null) return "_";
 		return this.getPieces().toString();
 	}
 }

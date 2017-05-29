@@ -31,9 +31,27 @@ public class Positionnement {
 		this.ligne = ligne;
 	}
 	
-	public Pieces getPieces(Positionnement positionnement,Echiquier echiquier)
+	public Pieces getPiece(Positionnement position,Echiquier echiquier)
 	{
-		return echiquier.getPieces(positionnement);
+		return echiquier.getPieces(position);
+	}
+	
+	public boolean equals(Object o)
+	
+	{
+		Positionnement c = (Positionnement) o;
+	
+			return (this.ligne==c.ligne && this.colonne==c.colonne);
+
+	}
+	
+	public Case getCase(Echiquier echiquier)
+	{
+		if(ligne<8 && ligne>=0 && colonne<8 && colonne>=0)
+		{
+		return echiquier.getCase(this.ligne,this.colonne);
+		}
+		else return null;
 	}
 	
 	public String toString()

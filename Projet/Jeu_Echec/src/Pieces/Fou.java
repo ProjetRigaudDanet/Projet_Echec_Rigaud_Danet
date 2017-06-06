@@ -94,10 +94,7 @@ public class Fou extends Pieces
 			}
 			i++;
 			
-		}
-		
-		
-		System.out.println(deplacementsPossibles.toString());
+		}	
 		
 		return deplacementsPossibles;
 	}

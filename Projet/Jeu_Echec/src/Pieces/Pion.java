@@ -90,8 +90,7 @@ public class Pion extends Pieces
 				}
 
 		}
-		
-		System.out.println(deplacementsPossibles.toString());
+	
 		return deplacementsPossibles;
 	}
 }	

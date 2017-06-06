@@ -24,7 +24,31 @@ public class Roi extends Pieces
 
 	@Override
 	public ArrayList<Positionnement> deplacementOk(Positionnement init, Echiquier echiquier) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Positionnement> deplacementsPossibles = new ArrayList<Positionnement>();
+		if (echiquier.getCase(init.getLigne()+1, init.getColonne()+1) != null && echiquier.getCase(init.getLigne()+1, init.getColonne()+1).estVide(this.couleur)==false)
+			deplacementsPossibles.add(new Positionnement(init.getLigne()+1, init.getColonne()+1));
+		
+		if (echiquier.getCase(init.getLigne()+1, init.getColonne()-1) != null && echiquier.getCase(init.getLigne()+1, init.getColonne()-1).estVide(this.couleur)==false)
+			deplacementsPossibles.add(new Positionnement(init.getLigne()+1, init.getColonne()-1));
+		
+		if (echiquier.getCase(init.getLigne()-1, init.getColonne()+1) != null && echiquier.getCase(init.getLigne()-1, init.getColonne()+1).estVide(this.couleur)==false)
+			deplacementsPossibles.add(new Positionnement(init.getLigne()-1, init.getColonne()+1));
+		
+		if (echiquier.getCase(init.getLigne()-1, init.getColonne()-1) != null && echiquier.getCase(init.getLigne()-1, init.getColonne()-1).estVide(this.couleur)==false)
+			deplacementsPossibles.add(new Positionnement(init.getLigne()-1, init.getColonne()-1));
+		
+		if (echiquier.getCase(init.getLigne()+1, init.getColonne()) != null && echiquier.getCase(init.getLigne()+1, init.getColonne()).estVide(this.couleur)==false)
+			deplacementsPossibles.add(new Positionnement(init.getLigne()+1, init.getColonne()));
+		
+		if (echiquier.getCase(init.getLigne()-1, init.getColonne()) != null && echiquier.getCase(init.getLigne()-1, init.getColonne()).estVide(this.couleur)==false)
+			deplacementsPossibles.add(new Positionnement(init.getLigne()-1, init.getColonne()));
+		
+		if (echiquier.getCase(init.getLigne(), init.getColonne()+1) != null && echiquier.getCase(init.getLigne(), init.getColonne()+1).estVide(this.couleur)==false)
+			deplacementsPossibles.add(new Positionnement(init.getLigne(), init.getColonne()+1));
+		
+		if (echiquier.getCase(init.getLigne(), init.getColonne()-1) != null && echiquier.getCase(init.getLigne(), init.getColonne()-1).estVide(this.couleur)==false)
+			deplacementsPossibles.add(new Positionnement(init.getLigne(), init.getColonne()-1));
+		
+		return deplacementsPossibles;
 	}
 }

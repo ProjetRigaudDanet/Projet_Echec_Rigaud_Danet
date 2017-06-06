@@ -101,9 +101,6 @@ public class Tour extends Pieces
 			
 		}
 		
-		
-		System.out.println(deplacementsPossibles.toString());
-		
 		return deplacementsPossibles;
 	}
 }

@@ -11,9 +11,22 @@ public class Positionnement {
 	
 	public Positionnement(int ligne,int colonne)
 	{
-		this.setLigne(ligne);
-		this.setColonne(colonne);
+		//if(ligne<8 && ligne>=0 && colonne<8 && colonne>=0) //CA SERT VRAIMENT CA ?
+		//{
+			this.setLigne(ligne);
+			this.setColonne(colonne);
+		//}
 	}
+	
+	public boolean equals(Object o)
+	
+	{
+		Positionnement c = (Positionnement) o;
+	
+			return (this.ligne==c.ligne && this.colonne==c.colonne );
+
+	}
+	
 
 	public int getColonne() {
 		return this.colonne;
@@ -31,31 +44,17 @@ public class Positionnement {
 		this.ligne = ligne;
 	}
 	
-	public Pieces getPiece(Positionnement position,Echiquier echiquier)
-	{
-		return echiquier.getPieces(position);
-	}
-	
-	public boolean equals(Object o)
-	
-	{
-		Positionnement c = (Positionnement) o;
-	
-			return (this.ligne==c.ligne && this.colonne==c.colonne);
-
-	}
-	
-	public Case getCase(Echiquier echiquier)
+	public Case getCase(Echiquier e)
 	{
 		if(ligne<8 && ligne>=0 && colonne<8 && colonne>=0)
 		{
-		return echiquier.getCase(this.ligne,this.colonne);
+			return e.getCase(this.ligne,this.colonne);
 		}
 		else return null;
 	}
 	
 	public String toString()
 	{
-		return "" + this.ligne + this.colonne;
+		return "" + (char)(this.ligne +65) + (this.colonne + 1);
 	}
 }

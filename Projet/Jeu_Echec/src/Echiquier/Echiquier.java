@@ -28,14 +28,11 @@ public class Echiquier
 	
 	public Echiquier()
 	{
-		echiquier = new Case[8][8];
-		for(int i=0;i<echiquier.length;i++)
-		{
+		this.echiquier = new Case[8][8];
+		for(int i=0 ; i<8 ; i++)
 			for(int j=0; j<8; j++)
-			{
-				echiquier[i][j] = new Case();
-			}
-		}
+			echiquier[i][j] = new Case();
+		this.f = new File("../../save.txt");
 	}
 	
 	public Case[][] getEchiquier()
@@ -110,7 +107,9 @@ public class Echiquier
 	
 	public boolean conditionOk(Positionnement init,Positionnement finale)
 	{
+		try{
 		if(init.getCase(this) != null && finale.getCase(this) != null)
+			{
 				if(
 				(init.getLigne() >= 0 && init.getLigne() <= 7)
 				&&
@@ -122,7 +121,11 @@ public class Echiquier
 				)
 					if(init.getCase(this).getPieces().deplacementOk(init, this).contains(finale))
 						return true;
-		
+			}
+		}
+		catch(NullPointerException e ){
+			affichage.afficher("\n=La case est vide !\n");
+		}
 		return false;
 	}
 	
@@ -136,13 +139,104 @@ public class Echiquier
 					if (this.getCase(x, y).getPieces().estEchec(new Positionnement(x,y),this))
 					{
 						String couleur = this.getCase(x, y).getPieces().getCouleur();
-						affichage.afficher("Echec au roi " + couleur);
 						return couleur;
 					}
 				}
 			}
 		}
 		return null;
+	}
+	
+	public boolean Mat(){
+		if (echecRoi() == "Blanc" || echecRoi() == "Noir"){
+			if (echecRoi() == "Blanc"){
+				int compteur = 0;
+				int compteurTotal =0;
+				for(int x = 0 ; x < 8;x++)
+				{
+					for(int y = 0 ; y < 8;y++)
+					{
+						if ((this.getCase(x, y).estVide("Blanc"))) {
+							Pieces roi = this.getCase(x, y).getPieces();
+							Positionnement p = new Positionnement(x,y);
+							
+							for (int i = 0; i < roi.deplacementOk(p, this).size();i++)
+							{
+								compteurTotal++;
+								Positionnement posFinal = roi.deplacementOk(p, this).get(i);
+								Pieces tmp = null;
+								if (posFinal.getCase(this).getPieces() != null) tmp = posFinal.getCase(this).getPieces();
+								this.setPieces(getPieces(p),posFinal);
+								this.setPieces(null, p);
+								if (echecRoi() == "Blanc")
+								{
+									this.setPieces(getPieces(posFinal),p);
+									this.setPieces(null, posFinal);
+									compteur++;
+								}
+								else
+								{
+									this.setPieces(getPieces(posFinal),p);
+									this.setPieces(null, posFinal);
+								}
+								if (tmp != null){
+									this.setPieces(tmp, posFinal);
+								}
+							}
+						}	
+					}
+				}
+				if (compteur == compteurTotal){
+					affichage.afficher("Mat ! Noir a gagné !");
+					return true;
+				}
+			}
+			else if (echecRoi() == "Noir"){
+				int compteur = 0;
+				int compteurTotal =0;
+				for(int x = 0 ; x < 8;x++)
+				{
+					for(int y = 0 ; y < 8;y++)
+					{
+						if ((this.getCase(x, y).estVide("Noir"))) {
+							Pieces roi = this.getCase(x, y).getPieces();
+							Positionnement p = new Positionnement(x,y);
+							
+							for (int i = 0; i < roi.deplacementOk(p, this).size();i++)
+							{
+								compteurTotal++;
+								Positionnement posFinal = roi.deplacementOk(p, this).get(i);
+								Pieces tmp = null;
+								if (posFinal.getCase(this).getPieces() != null) tmp = posFinal.getCase(this).getPieces();
+								this.setPieces(getPieces(p),posFinal);
+								this.setPieces(null, p);
+								if (echecRoi() == "Noir")
+								{
+									this.setPieces(getPieces(posFinal),p);
+									this.setPieces(null, posFinal);
+									compteur++;
+								}
+								else
+								{
+									this.setPieces(getPieces(posFinal),p);
+									this.setPieces(null, posFinal);
+								}
+								if (tmp != null){
+									this.setPieces(tmp, posFinal);
+								}
+							}
+							
+						}
+							
+					}
+				}
+				if (compteur == compteurTotal){
+					affichage.afficher("Mat ! Blanc a gagné !");
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	public void sauvegarder(File f, Boolean tourBlanc){
@@ -218,44 +312,39 @@ public class Echiquier
 	
 	public int Deplacement(String couleur, Boolean tourBlanc)
 	{
-		//VERIFIER QUE LE DEPLACEMENT EST VALIDE
-		/* comparer le Depacement a l'ArrayList de la piece Selectionée
-		 */
-		Positionnement posInit;
-		Positionnement posFinal;
+		Positionnement Init;
+		Positionnement Final;
 		do{
 
-			posInit = affichage.PositionInit();
-			if (posInit.getColonne() == -1 && posInit.getLigne() == -1)
+			Init = affichage.PositionInit();
+			if (Init.getColonne() == -1 && Init.getLigne() == -1)
 			{
 				this.sauvegarder(f,tourBlanc);
-				affichage.afficher("=== Partie Sauvegardée ===");
+				affichage.afficher("\nLa partie vient d'être sauvegardé\n");
 				return -1;
 			}
 			
-			if (posInit.getColonne() == -2 && posInit.getLigne() == -2)
+			if (Init.getColonne() == -2 && Init.getLigne() == -2)
 			{
 				int tour = this.charger(f);
-				affichage.afficher("\n=== Partie Chargée ===\n");
-				return (tour - 3);							//Retourne -2 si tour des blancs, -3 si tours des noirs
+				affichage.afficher("\nPartie chargé correctement !\n");
+				return (tour - 3);
 			}
 				
-			posFinal = affichage.PositionFinale();
+			Final = affichage.PositionFinale();
 
-		}while(!conditionOk(posInit,posFinal) );
+		}while(!conditionOk(Init,Final) );
 
-		if ((getPieces(posInit).getCouleur()) != couleur) return 0;
-		//else if (echecRoi()) return 0;
+		if ((getPieces(Init).getCouleur()) != couleur) return 0;
 		
-		this.setPieces(getPieces(posInit),posFinal);
+		this.setPieces(getPieces(Init),Final);
+		this.setPieces(null, Init);
 		if (echecRoi() == couleur)
 		{
-			this.setPieces(getPieces(posFinal),posInit);
-			this.setPieces(null, posFinal);
+			this.setPieces(getPieces(Final),Init);
+			this.setPieces(null, Final);
 			return 0;
 		}
-		
-		this.setPieces(null, posInit);
 		
 		return 1;
 		

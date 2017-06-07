@@ -33,7 +33,7 @@ public abstract class Pieces {
 		
 	}
 	
-	public boolean estEchec(Positionnement init, Echiquier e){ 
+	public boolean estEchec(Positionnement init, Echiquier echiquier){ 
 		
 		ArrayList<Positionnement> liste = new ArrayList<Positionnement>();
 		
@@ -41,23 +41,21 @@ public abstract class Pieces {
 		{
 			for(int y = 0 ; y < 8;y++)
 			{
-				if(e.getCase(x, y).estVide(this.estOppose()))
+				if(echiquier.getCase(x, y).estVide(this.estOppose()))
 				{
-					Pieces p = e.getCase(x,y).getPieces();
+					Pieces p = echiquier.getCase(x,y).getPieces();
 					Positionnement posP = new Positionnement(x,y);
 					
-					for (int i =0; i < p.deplacementOk(posP, e).size();i++)
+					for (int i =0; i < p.deplacementOk(posP, echiquier).size();i++)
 					{
-						liste.add(p.deplacementOk(posP, e).get(i));
+						liste.add(p.deplacementOk(posP, echiquier).get(i));
 					}
 				}
 			}
 			
 		}
-		if (liste.contains(init)) {//System.out.println("Echec");
+		if (liste.contains(init)) {
 			return true;}
-		
-		//System.out.println("Pas Echec");
 		return false;
 	}
 

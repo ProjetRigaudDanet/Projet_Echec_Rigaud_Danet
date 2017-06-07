@@ -22,8 +22,10 @@ public class Partie {
 		{
 			do{
 				affichage.afficher("\nAu tour des blancs !");
+				echiquier.echecRoi();
 				verif = echiquier.Deplacement("Blanc",Tourdesblancs);
-				if (verif == -3)
+				if (verif == -2) return;
+				else if (verif == -3)
 				{
 					Tourdesblancs = false;
 					return;
@@ -35,8 +37,10 @@ public class Partie {
 		{
 			do{
 				affichage.afficher("\nAu tour des noirs !");
+				echiquier.echecRoi();
 				verif = echiquier.Deplacement("Noir",Tourdesblancs);
-				if (verif == -2)
+				if (verif == -3) return;
+				else if (verif == -2)
 				{
 					Tourdesblancs = true;
 					return;
@@ -47,10 +51,10 @@ public class Partie {
 	}
 	
 	public void jeu(){
-		boolean partie = true;
 		do{
 			TourJeu();
 			affichage.afficher(echiquier);
-		}while (partie);
+		}while (echiquier.Mat() == false);
 	}	
+	
 }

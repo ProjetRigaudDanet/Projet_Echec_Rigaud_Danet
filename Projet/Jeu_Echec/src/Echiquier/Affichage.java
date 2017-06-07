@@ -63,38 +63,34 @@ public class Affichage
 	}
 	
 	
-	public boolean boolplacerPiece(int init, int finale) 
-	{
-		if(init>7)
-		{
-			System.out.println("Erreur dans la coordonnée sur l'axe des abscisses : \n" + "Ligne : " + init + '\n');
-			return false;
-		}
-		if(finale>7)
-		{
-			System.out.println("Erreur dans la coordonnée sur l'axe des ordonnée : \n" + "Colonne : " + finale + '\n');
-			return false;
-		}
-		return true;
-	}
-	
 	public Positionnement PositionInit()
 	{
 		Scanner sc = new Scanner(System.in);
 		String str;
-		String sa = "sa";
 		int i=0,j=0;
+		boolean testCatch;
 		do{
-			afficher("Saisir une position départ:");
-			str = sc.nextLine();
-	
-			i = ((int) str.charAt(0)) - 65;
-	
-			j = (int) str.charAt(1)-49; 
-		}while(str.length()>2);
+			testCatch = true;
+			try{
+				do{
+					afficher("Saisir une position de départ:");
+					str = sc.nextLine();
+					i = ((int) str.charAt(0)) - 65;
+					j = (int) str.charAt(1)-49; 
+				}while(str.length()>2);
+			}
+			catch(StringIndexOutOfBoundsException e){
+				testCatch = false;
+			}
+			catch(NullPointerException e ){
+				testCatch = false;
+			}
+			
+		}while(testCatch == false);
 		
 		if (i == 50 && j == 48) return new Positionnement(-1,-1); // sa = sauvegarder
 		else if (i == 34 && j == 55) return new Positionnement(-2,-2); // ch = charger
+		
 		else return new Positionnement(i,j);
 		
 	}
@@ -103,15 +99,25 @@ public class Affichage
 	{
 		Scanner sc = new Scanner(System.in);
 		String str;
-		int i,j;
-
-			do{
-				afficher("Saisir une position d'arrivée:");
-				str = sc.nextLine();
-			
-				i = ((int) str.charAt(0)) - 65;
-				j = (int) str.charAt(1)-49; 
-			}while(str.length()>2);
-			return new Positionnement(i,j); 		
+		int i=0,j=0;
+		boolean testCatch;
+		do{
+			testCatch = true;
+			try{
+				do{
+					afficher("Saisir une position d'arrivée:");
+					str = sc.nextLine();
+					i = ((int) str.charAt(0)) - 65;
+					j = (int) str.charAt(1)-49; 
+				}while(str.length()>2);
+			}
+			catch(StringIndexOutOfBoundsException e){
+				testCatch = false;
+			}
+			catch(NullPointerException e ){
+				testCatch = false;
+			}
+		}while(testCatch == false);
+		return new Positionnement(i,j); 		
 	}
 }

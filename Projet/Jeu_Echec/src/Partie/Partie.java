@@ -54,6 +54,7 @@ public class Partie {
 		do{
 			TourJeu();
 			affichage.afficher(echiquier);
+			if((echiquier.echecRoi() != null)) affichage.afficher("Echec");
 		}while (echiquier.Mat() == false);
 	}	
 	
